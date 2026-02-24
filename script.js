@@ -21,11 +21,11 @@ async function extractPdfText(file) {
         const pdf = await pdfjsLib.getDocument(typedarray).promise;
         let text = '';
 
-for (let i = 1; i <= pdf.numPages; i++) {
-  const page = await pdf.getPage(i);
-  const content = await page.getTextContent();
-  text += content.items.map(item => item.str).join(' ') + '\n';
-}
+        for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            text += content.items.map(item => item.str).join(' ') + '\n';
+        }
 
         document.getElementById('cvText').value = text;
     };
@@ -75,9 +75,4 @@ function rateCV() {
         <div class="score"><strong>Layout:</strong> ${scores.layout.toFixed(1)} / 10</div>
         <div class="score"><strong>Fit for Finance:</strong> ${scores.finance.toFixed(1)} / 10</div>
         <div class="score"><strong>Relevant Experience:</strong> ${scores.experience.toFixed(1)} / 10</div>
-        <div class="score"><strong>Quantifiable Metrics:</strong> ${scores.quant.toFixed(1)} / 10</div>
-        <div class="score"><strong>Extracurriculars:</strong> ${scores.extra.toFixed(1)} / 10</div>
-    `;
 
-    results.classList.remove('hidden');
-}
